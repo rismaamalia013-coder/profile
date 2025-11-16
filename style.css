@@ -1,0 +1,71 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* HEADER */
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 40px;
+    background-color: #0d47a1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.main-header nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #bbdefb;
+    transition: 0.2s;
+}
+
+.main-header nav a:hover {
+    color: white;
+}
+
+/* HERO */
+.hero {
+    padding-top: 120px;
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    color: white;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* SECTION */
+section {
+    padding: 60px 15%;
+}
+
+/* SKILLS */
+.skill-item {
+    background-color: #1976d2;
+    color: white;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* CONTACT */
+.contact p {
+    margin-bottom: 10px;
+}
