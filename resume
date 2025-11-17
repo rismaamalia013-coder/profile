@@ -1,1 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Risma Amalia — Professional Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#0ea5e9; --glass: rgba(255,255,255,0.04); --text:#e6eef6;
+    }
+    [data-theme='light']{--bg:#f7fafc;--card:#ffffff;--muted:#475569;--accent:#0ea5e9;--glass:rgba(2,6,23,0.03);--text:#0b1220}
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,var(--bg),#071126);color:var(--text);-webkit-font-smoothing:antialiased}
+
+    /* LAYOUT */
+    header{position:fixed;inset-inline:0;top:0;height:72px;padding:12px 28px;display:flex;align-items:center;gap:20px;background:linear-gradient(180deg,rgba(2,6,23,0.55),transparent);backdrop-filter:blur(6px);z-index:40}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:grid;place-items:center;font-weight:700;color:#021024}
+    nav{margin-left:auto;display:flex;gap:10px;align-items:center}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;transition:all .18s}
+    nav a:hover{background:var(--glass);transform:translateY(-2px)}
+    .actions{display:flex;gap:8px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:inherit;cursor:pointer}
+
+    main{max-width:1100px;margin:120px auto;padding:28px}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:320px 1fr;gap:36px;align-items:center}
+    .photo{width:320px;height:320px;border-radius:18px;overflow:hidden;border:4px solid var(--accent);box-shadow:0 20px 50px rgba(2,6,23,0.6)}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .intro h1{font-size:34px;margin:0 0 6px}
+    .intro p.lead{color:var(--accent);margin:0 0 12px;font-weight:600}
+    .meta{color:var(--muted);margin-top:6px}
+    .cta{display:flex;gap:10px;margin-top:18px}
+
+    /* GRID SECTIONS */
+    .grid-two{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:28px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
+
+    h2.section-title{font-size:20px;color:var(--accent);margin:0 0 12px}
+
+    /* EXPERIENCE TIMELINE */
+    .timeline{position:relative;margin-left:6px}
+    .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),#7c3aed);opacity:.6}
+    .entry{position:relative;padding:12px 12px 12px 36px;margin-bottom:12px;border-radius:8px}
+    .entry::before{content:'';position:absolute;left:-2px;top:18px;width:14px;height:14px;border-radius:4px;background:var(--card);border:3px solid var(--accent)}
+    .entry .period{color:var(--muted);font-size:13px}
+
+    /* PROJECTS */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .project{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03)}
+    .project h4{margin:0 0 6px}
+    .project p{color:var(--muted);font-size:14px}
+
+    /* SKILLS */
+    .skill{margin-bottom:14px}
+    .skill .label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:6px}
+    .bar{height:10px;background:var(--glass);border-radius:999px;overflow:hidden}
+    .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#7c3aed);transition:width 1s cubic-bezier(.2,.9,.2,1)}
+
+    /* CERTS */
+    .cert-list{display:flex;flex-wrap:wrap;gap:10px}
+    .cert{padding:8px 10px;border-radius:8px;background:var(--card);font-size:14px;color:var(--muted)}
+
+    /* CONTACT */
+    .contact-form{display:grid;gap:10px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    .form-actions{display:flex;gap:8px;justify-content:flex-end}
+
+    /* FOOTER */
+    footer{margin-top:32px;text-align:center;color:var(--muted);padding:18px}
+
+    /* SMALL SCREENS */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;grid-auto-rows:auto;text-align:center}
+      .grid-two{grid-template-columns:1fr}
+      header{padding:10px 16px}
+      .photo{width:200px;height:200px;margin:0 auto}
+    }
+
+    /* subtle animations */
+    .fade-up{opacity:0;transform:translateY(6px);animation:fadeUp .6s forwards}
+    .delay-1{animation-delay:.08s}.delay-2{animation-delay:.16s}.delay-3{animation-delay:.24s}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    /* accessibility */
+    a:focus,input:focus,button:focus{outline:2px solid rgba(255,255,255,0.08);outline-offset:2px}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">R'</div>
+    <div style="display:flex;flex-direction:column;line-height:1">
+      <strong style="font-size:14px">Risma Amalia</strong>
+      <small style="color:var(--muted);font-size:12px">Mahasiswa Sistem Informasi</small>
+    </div>
+  </div>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="#home">Home</a>
+    <a href="#about">Tentang</a>
+    <a href="#experience">Pengalaman</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Keahlian</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+
+  <div class="actions">
+    <button class="btn" id="themeToggle" aria-pressed="false" title="Toggle light/dark">Mode</button>
+    <button class="btn" id="downloadPdf" title="Download resume as PDF">Download</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="photo fade-up delay-1"><img src="profile.jpg" alt="Foto Risma Amalia"></div>
+
+    <div class="intro fade-up delay-2">
+      <h1>Risma Amalia</h1>
+      <p class="lead">Mahasiswa Sistem Informasi • Pengembang & Analis Sistem</p>
+      <p class="meta">Cilempuyang, Cimanggu, Cilacap • rismaamalia@gmail.com • +62 812 3456 7890</p>
+
+      <div class="cta" style="margin-top:18px">
+        <a class="btn" href="#projects">Lihat Projects</a>
+        <button class="btn" id="contactOpen">Hubungi</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID: main / aside -->
+  <div class="grid-two">
+    <div>
+      <!-- ABOUT -->
+      <section id="about" class="card fade-up delay-1">
+        <h2 class="section-title">Tentang Saya</h2>
+        <p style="color:var(--muted);">Saya mahasiswa semester 7 di Universitas Komputama, fokus pada analisis sistem informasi dan pengembangan aplikasi. Aktif dalam organisasi kampus dan memiliki pengalaman intership pada proyek pengembangan web serta analisa kebutuhan sistem.</p>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="card fade-up delay-2" style="margin-top:18px">
+        <h2 class="section-title">Pengalaman</h2>
+        <div class="timeline">
+          <div class="entry">
+            <strong>Frontend Intern — Studio Kreatif</strong>
+            <div class="period">Jul 2022 — Des 2022</div>
+            <p style="color:var(--muted);margin-top:8px">Membantu pembuatan prototipe, menerapkan UI responsif, dan melakukan pengujian usability untuk aplikasi mobile.</p>
+          </div>
+
+          <div class="entry">
+            <strong>Asisten Lab — Universitas Komputama</strong>
+            <div class="period">Jan 2023 — Sekarang</div>
+            <p style="color:var(--muted);margin-top:8px">Mengarahkan praktikum, mendampingi mahasiswa dalam penggunaan tools basis data dan pemrograman dasar.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="card fade-up delay-3" style="margin-top:18px">
+        <h2 class="section-title">Selected Projects</h2>
+        <div class="projects">
+          <article class="project">
+            <h4>Website Profil Perusahaan</h4>
+            <div class="period" style="color:var(--muted);font-size:13px">React • Tailwind • 2024</div>
+            <p>Mengimplementasikan desain UI, optimasi performa, dan meningkatkan aksesibilitas halaman utama.</p>
+          </article>
+
+          <article class="project">
+            <h4>Sistem Informasi Akademik (Mini)</h4>
+            <div class="period" style="color:var(--muted);font-size:13px">HTML • PHP • MySQL • 2023</div>
+            <p>Membuat modul manajemen siswa, input nilai sederhana, dan fitur login berbasis peran.</p>
+          </article>
+        </div>
+      </section>
+
+    </div>
+
+    <aside>
+      <section class="card fade-up delay-1">
+        <h2 class="section-title">Keahlian</h2>
+        <div class="skill">
+          <div class="label"><span>HTML &amp; CSS</span><span>90%</span></div>
+          <div class="bar"><div class="fill" data-percent="90"></div></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>JavaScript (Dasar)</span><span>75%</span></div>
+          <div class="bar"><div class="fill" data-percent="75"></div></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>Analisis Sistem</span><span>70%</span></div>
+          <div class="bar"><div class="fill" data-percent="70"></div></div>
+        </div>
+
+        <h2 class="section-title" style="margin-top:18px">Sertifikat</h2>
+        <div class="cert-list">
+          <span class="cert">Pemrograman Web Dasar</span>
+          <span class="cert">Fundamental Data</span>
+        </div>
+
+        <h2 class="section-title" style="margin-top:18px">Bahasa</h2>
+        <div style="color:var(--muted);">Indonesia (Native)<br>English (Intermediate)</div>
+      </section>
+
+      <section class="card fade-up delay-2" style="margin-top:18px">
+        <h2 class="section-title">Quick Links</h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a class="btn" href="#projects">Portfolio</a>
+          <a class="btn" href="#contact">Kontak</a>
+          <a class="btn" href="#experience">Timeline</a>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- CONTACT FORM (modal) -->
+  <section id="contact" class="card fade-up delay-3" style="margin-top:18px">
+    <h2 class="section-title">Kontak</h2>
+    <p style="color:var(--muted);margin-bottom:12px">Isi formulir di bawah atau klik tombol kirim untuk membuka email default (mailto) — demo ini tidak mengirim data ke server.</p>
+
+    <form id="contactForm" class="contact-form" onsubmit="return handleSubmit(event)">
+      <input id="name" name="name" placeholder="Nama" required />
+      <input id="email" name="email" type="email" placeholder="email@contoh.com" required />
+      <textarea id="message" name="message" rows="5" placeholder="Pesan" required></textarea>
+      <div class="form-actions">
+        <button type="submit" class="btn">Kirim via Email</button>
+        <button type="button" class="btn" id="printBtn">Cetak / Simpan PDF</button>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Risma Amalia • Built with care
+  </footer>
+</main>
+
+<script>
+  // Theme toggle (persist in localStorage)
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  function applyTheme(t){
+    if(t==='light'){document.documentElement.setAttribute('data-theme','light');themeToggle.setAttribute('aria-pressed','true')} else {document.documentElement.removeAttribute('data-theme');themeToggle.setAttribute('aria-pressed','false')}
+  }
+  const saved = localStorage.getItem('theme'); if(saved) applyTheme(saved);
+  themeToggle.addEventListener('click', ()=>{const cur = document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';applyTheme(cur);localStorage.setItem('theme', cur);});
+
+  // Animate skill bars
+  function animateSkills(){document.querySelectorAll('.fill').forEach(f=>{const p = f.getAttribute('data-percent');f.style.width = p+'%';});}
+  window.addEventListener('load', ()=> setTimeout(animateSkills, 300));
+
+  // Contact form: open mailto as fallback
+  function handleSubmit(e){e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // Validate minimal
+    if(!name||!email||!message){alert('Lengkapi semua kolom.');return false}
+
+    // Build mailto link
+    const subject = encodeURIComponent('Pesan dari '+name);
+    const body = encodeURIComponent('Nama: '+name+'
+Email: '+email+'
+
+'+message);
+    const mailto = 'mailto:'+encodeURIComponent('rismaamalia@gmail.com')+'?subject='+subject+'&body='+body;
+
+    // Open user's mail client
+    window.location.href = mailto;
+    return false;
+  }
+
+  // Print / Save as PDF
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+  document.getElementById('downloadPdf').addEventListener('click', ()=> window.print());
+
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{ const target = document.querySelector(a.getAttribute('href')); if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); } });
+  });
+
+  // Contact quick-open
+  document.getElementById('contactOpen').addEventListener('click', ()=>{document.getElementById('contact').scrollIntoView({behavior:'smooth'});});
+
+  // Accessibility: keyboard focus outline on Tab
+  (function(){let mouseMode = false; window.addEventListener('mousedown', ()=>mouseMode=true); window.addEventListener('keydown', e=>{if(e.key==='Tab') mouseMode=false; document.body.style.outline = mouseMode? 'none':''});})();
+</script>
+
+</body>
+</html>
 
